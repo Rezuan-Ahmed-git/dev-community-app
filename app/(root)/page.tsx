@@ -53,7 +53,7 @@ const test = async () => {
     await dbConnect();
     throw new ValidationError({
       title: ["Required"],
-      tags: ["Java is not a valid tag"],
+      tags: ["I am from root page"],
     });
   } catch (error) {
     return handleError(error);
