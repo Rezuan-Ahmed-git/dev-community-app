@@ -5,9 +5,8 @@ import HomeFilter from "@/components/filters/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import { api } from "@/lib/api";
 import handleError from "@/lib/handlers/error";
-import { ValidationError } from "@/lib/http-errors";
-import dbConnect from "@/lib/mongoose";
 
 const questions = [
   {
@@ -50,11 +49,7 @@ const questions = [
 
 const test = async () => {
   try {
-    await dbConnect();
-    throw new ValidationError({
-      title: ["Required"],
-      tags: ["I am from root page"],
-    });
+    return await api.users.getAll();
   } catch (error) {
     return handleError(error);
   }
